@@ -2,20 +2,29 @@
 @import "../../utils/mixin";
 
 .article {
-  background-image: url("../../images/img-1440.jpg");
+  background-image: url("../../images/img2880.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 245px;
+  padding-top: 150px;
+  padding-bottom: 45px;
 }
 
 .article__wrapper {
   width: 100%;
   min-height: 600px;
+  margin-bottom: 35px;
+  padding: 35px 75px 50px 75px;
 
   @include bordered();
+  @include semi-bordered();
+  background-color: getColor('background');
   overflow: hidden;
 }
 
 .article__title {
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
+  margin-bottom: 50px;
+
   font-size: $article-title-font-size;
 }
 
@@ -25,7 +34,19 @@
 }
 
 .backLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
   font-size: 16px;
+  font-weight: $bold;
   line-height: $line-height;
   color: getColor("primary");
+
+  @include transition("border-bottom");
+
+  &:hover {
+    border-bottom: 3px solid getColor('accent');
+    width: 170px;
+  }
 }

@@ -1,14 +1,9 @@
-import {
-  searchById,
-  searchByQuery,
-  searchLatestNews,
-  searchTrendingNews,
-} from "api/news-service";
+import { searchLatestNews } from "api/news-service";
 import { CardsList } from "components/CardsList/CardsList";
 import { Container } from "components/Container/Container";
 import { FilterBar } from "components/FilterBar/FilterBar";
 import { Loader } from "components/Loader/Loader";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { toast } from "react-toastify";
 
 import styles from "./Home.module.scss";
@@ -17,39 +12,50 @@ export const Home = function () {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState("");
+  const [filterValue, setFilterValue] = useState("");
 
-  searchById("555fdc75-ef7b-412d-b38a-b858ca1a9804").then(console.log);
+  useEffect(() => {
+    searchLatestNews()
+      .then((response) => {
+        setArticles(response);
+        setIsError("");
+      })
+      .catch((error) => {
+        setIsError(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
 
-  // useEffect(() => {
-  //   searchTrendingNews()
-  //     .then((response) => {
+  useEffect(() => {
+    if (!isError) return;
 
-  //       setIsError("");
-  //     })
-  //     .catch((error) => {
-  //       setIsError(error.message);
-  //     })
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // }, []);
+    toast.error("Houston we have a problem");
+  }, [isError]);
 
-  // useEffect(() => {
-  //   if (!isError) return;
+  const onChange = (event) => {
+    const filterValue = event.target.value;
+    setFilterValue(filterValue.trim());
+  };
 
-  //   toast.error("Houston we have a problem");
-  // }, [isError]);
+  const filteredArticles = useMemo(() => {
+    return articles.filter((article) => {
+      return article.title.toLowerCase().includes(filterValue.toLowerCase());
+    });
+  }, [articles, filterValue]);
 
   return (
     <section style={{ padding: "60px 0" }}>
       <Container>
         <div className={styles.wrapper}>
-          <FilterBar />
+          <FilterBar onChange={onChange} />
           <p className={styles.result}>
-            <span className={styles.result__title}>Result:</span>555
+            <span className={styles.result__title}>Result:</span>
+            {filteredArticles.length}
           </p>
-          {articles.length > 0 && <CardsList />}
-          {/* {isLoading && <Loader />} */}
+          {articles.length > 0 && <CardsList articles={filteredArticles} />}
+          {isLoading && <Loader />}
         </div>
       </Container>
     </section>

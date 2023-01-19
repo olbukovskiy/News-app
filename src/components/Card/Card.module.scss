@@ -2,19 +2,35 @@
 @import "../../utils/mixin";
 
 .card {
+  height: 100%;
+  font-family: $main-font, sans-serif;
   border-radius: $border-radius;
   overflow: hidden;
   @include semi-bordered();
+  @include bordered();
+  @include transition(transform);
+
+  &:hover {
+    transform: scale(1.03);
+  }
 }
 
 .thumb {
-  height: 40%;
+  position: relative;
+  padding: 0 0 60% 0;
   width: 100%;
-  margin-bottom: 25px;
 
   & img {
+    position: absolute;
+    top: 0;
+    left: 0;
     object-fit: cover;
   }
+}
+
+.card__box {
+  display: grid;
+  padding: 25px;
 }
 
 .card__date {
@@ -23,19 +39,22 @@
   gap: 8px;
   margin-bottom: 25px;
 
+  font-family: $main-font, sans-serif;
   font-size: $date-font-size;
   opacity: 0.6;
 }
 
 .card__title {
+  font-weight: 400;
   margin-bottom: 20px;
-
+  font-family: $main-font, sans-serif;
   font-size: $article-title-font-size;
   line-height: $title-line-height;
 }
 
 .card__content {
   margin-bottom: 20px;
+  font-family: $main-font, sans-serif;
 }
 
 .card__link {
@@ -43,5 +62,7 @@
   align-items: center;
   gap: 6px;
 
+  font-family: $main-font, sans-serif;
   font-weight: $bold;
+  color: getColor("primary");
 }

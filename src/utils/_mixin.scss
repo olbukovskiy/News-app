@@ -4,6 +4,7 @@
 }
 
 @mixin semi-bordered() {
+  border-top: 1px solid #EAEAEA;
   border-bottom: 1px solid #EAEAEA;
   border-left: 1px solid #EAEAEA;
   border-right: 1px solid #EAEAEA;
