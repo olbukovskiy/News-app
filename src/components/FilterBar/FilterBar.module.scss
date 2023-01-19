@@ -1,10 +1,6 @@
 @import "../../utils/variables";
 @import "../../utils/mixin";
 
-.filter {
-  margin-bottom: 42px;
-}
-
 .filter__label {
   font-size: $semi-bold;
 }
@@ -17,7 +13,7 @@
 
 .filter__wrapper {
   position: relative;
-  width: 600px;
+  max-width: 600px;
   height: 50px;
 }
 
@@ -25,7 +21,7 @@
   height: 100%;
   width: 100%;
   padding: 15px 20px 15px 60px;
-  @include bordered;
+  @include bordered();
   color: getColor("secondary");
   background-color: getColor("card-background");
 

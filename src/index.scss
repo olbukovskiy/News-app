@@ -17,7 +17,7 @@ body {
   font-family: $main-font, sans-serif;
   line-height: $common-line-height;
   color: getColor('primary');
-  background-color: getColor('page-background');
+  background-color: getColor('background');
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

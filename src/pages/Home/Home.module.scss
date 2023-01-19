@@ -1,0 +1,20 @@
+@import "../../utils/variables";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+}
+
+.result {
+  font-weight: $semi-bold;
+  line-height: $line-height;
+
+  padding: 5px 0;
+  width: 100%;
+  border-bottom: 1px solid getColor("border-color");
+}
+
+.result__title {
+  margin-right: 5px;
+}

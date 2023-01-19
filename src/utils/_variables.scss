@@ -1,13 +1,14 @@
-$main-font: 'Montserrat';
+$main-font: "Montserrat";
 
 $colors: (
-  'primary': #363636,
-  'accent': #d98328,
-  'secondary': #575757,
-  'page-background': #E5E5E5,
-  'card-background': #FFFFFF,
-  'footer-background': #efefef,
-  'text': #000000
+  "primary": #363636,
+  "accent": #d98328,
+  "secondary": #575757,
+  "background": #ffffff,
+  "light-grey": #e5e5e5,
+  "footer-background": #efefef,
+  "border-color": #EAEAEA,
+  "text": #000000,
 );
 
 $article-title-font-size: 24px;

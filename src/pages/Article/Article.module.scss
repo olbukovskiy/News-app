@@ -1,0 +1,31 @@
+@import "../../utils/variables";
+@import "../../utils/mixin";
+
+.article {
+  background-image: url("../../images/img-1440.jpg");
+}
+
+.article__wrapper {
+  width: 100%;
+  min-height: 600px;
+
+  @include bordered();
+  overflow: hidden;
+}
+
+.article__title {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: $article-title-font-size;
+}
+
+.article__content {
+  font-size: $article-text-font-size;
+  color: getColor("text");
+}
+
+.backLink {
+  font-size: 16px;
+  line-height: $line-height;
+  color: getColor("primary");
+}

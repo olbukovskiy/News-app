@@ -1,0 +1,47 @@
+@import "../../utils/variables";
+@import "../../utils/mixin";
+
+.card {
+  border-radius: $border-radius;
+  overflow: hidden;
+  @include semi-bordered();
+}
+
+.thumb {
+  height: 40%;
+  width: 100%;
+  margin-bottom: 25px;
+
+  & img {
+    object-fit: cover;
+  }
+}
+
+.card__date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 25px;
+
+  font-size: $date-font-size;
+  opacity: 0.6;
+}
+
+.card__title {
+  margin-bottom: 20px;
+
+  font-size: $article-title-font-size;
+  line-height: $title-line-height;
+}
+
+.card__content {
+  margin-bottom: 20px;
+}
+
+.card__link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-weight: $bold;
+}

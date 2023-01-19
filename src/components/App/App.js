@@ -1,18 +1,18 @@
-import { SharedLayout } from "layout/SharedLayout/SharedLayout";
-import { Home } from "pages/Home";
+import { Home } from "pages/Home/Home";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { routes } from "routes";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path={routes.HOME} element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route path={routes.ARTICLE_ID} element={<div>Article</div>} />
-          <Route path="*" element={<Navigate to={routes.HOME} />} />
-        </Route>
+        <Route path={routes.HOME} element={<Home />} />
+        <Route path={routes.ARTICLE_ID} element={<div>Article</div>} />
+        <Route path="*" element={<Navigate to={routes.HOME} />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 }

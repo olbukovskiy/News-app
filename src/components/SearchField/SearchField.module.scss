@@ -1,0 +1,75 @@
+@import "../../utils/variables";
+@import "../../utils/mixin";
+
+.search__container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search__form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  height: 50px;
+  background-color: getColor("background");
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid getColor("border-color");
+  @include bordered();
+}
+
+.search__button {
+  position: relative;
+  display: inline-block;
+  padding: 20px 15px 20px 35px;
+  border: 0;
+  opacity: 0.6;
+  cursor: pointer;
+  outline: none;
+  background-color: getColor("background");
+
+  @include transition("opacity");
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.search__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+.search__input {
+  display: inline-block;
+  width: 100%;
+  height: 48px;
+  font: inherit;
+  outline: none;
+  border: none;
+  padding-left: 5px;
+  padding-right: 16px;
+  color: getColor("secondary");
+  background-color: getColor("card-background");
+  font-family: $main-font, sans-serif;
+
+  &::placeholder {
+    font-family: inherit;
+    color: inherit;
+  }
+}
+
+.icon {
+  position: absolute;
+  left: 60%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

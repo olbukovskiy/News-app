@@ -1,0 +1,15 @@
+@import "../../utils/variables";
+
+.navigationList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 32px;
+}
+
+.navigationList__text {
+  font-family: $main-font;
+  color: getColor("background");
+}
+
+

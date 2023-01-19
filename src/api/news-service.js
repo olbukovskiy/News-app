@@ -1,31 +1,42 @@
 import axios from "axios";
+import { URLS } from "urls";
 
-axios.defaults.baseURL = "https://api.spaceflightnewsapi.net";
+export const searchLatestNews = async function () {
+  const response = await axios.get(URLS.trendingsUrl());
+  const data = response.data.data.map(
+    ({
+      uuid: articleId,
+      image_url: image,
+      published_at: published,
+      description,
+      title,
+    }) => {
+      return { articleId, image, published, description, title };
+    }
+  );
+  return data;
+};
 
-// "/v3/articles" get all articles
-// "/v3/acticles/${id}" get current article
+export const searchByQuery = async function (searchQuery) {
+  const response = await axios.get(URLS.searchByQuery(searchQuery));
+  const data = response.data.data.map(
+    ({
+      uuid: articleId,
+      image_url: image,
+      published_at: published,
+      description,
+      title,
+    }) => {
+      return { articleId, image, published, description, title };
+    }
+  );
+  return data;
+};
 
-// _sort сортує за якимось полем
-// ='якась строка з інпута'     для пошуку по запиту
-
-// _in;
-// array[string](query); Get records that matches any value in the array of values
-
-// _contains
-// string
-// (query)
-// Get records that contains a value
-
-// _contains - Get records that contains a value
-// _containss
-// string
-// (query)
-// Get records that contains (case sensitive) a value
-
-// export const searchTrendingNews = async () => {
-//   try {
-//     const response = await axios.get();
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
+export const searchById = async function (articleId) {
+  const response = await axios.get(URLS.searchById(articleId));
+  const {
+    data: { title, description },
+  } = response;
+  return { title, description };
+};

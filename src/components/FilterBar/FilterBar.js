@@ -4,7 +4,7 @@ import styles from "./FilterBar.module.scss";
 
 export const FilterBar = function ({ onChange }) {
   return (
-    <div className={styles.filter}>
+    <div>
       <label>
         <span className={styles.filter__title}>Filter by keywords</span>
         <div className={styles.filter__wrapper}>

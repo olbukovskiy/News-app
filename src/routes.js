@@ -1,4 +1,5 @@
 export const routes = Object.freeze({
   HOME: "/",
-  ARTICLE_ID: "/:articleId",
+  ARTICLES: "articles",
+  ARTICLE_ID: "articles/:articleId",
 });
