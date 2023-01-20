@@ -16,7 +16,6 @@ export const Card = function ({
   filter,
 }) {
   const location = useLocation();
-  // const descr = formatServices.formatContent(description);
   const newTitle = formatServices.highlightSearchResults(filter, title);
   const newDescr = formatServices.highlightSearchResults(filter, description);
   const formattedDate = formatServices.formatDate(published);

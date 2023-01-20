@@ -15,6 +15,11 @@ export const Home = function () {
   const [filterValue, setFilterValue] = useState("");
   const { isLoading, setIsLoading, setIsError } = useError();
 
+  const onChange = (event) => {
+    const filterValue = event.target.value;
+    setFilterValue(filterValue.trim().toLowerCase());
+  };
+
   useEffect(() => {
     searchLatestNews()
       .then((response) => {
@@ -29,18 +34,25 @@ export const Home = function () {
       });
   }, [setIsError, setIsLoading]);
 
-  const onChange = (event) => {
-    const filterValue = event.target.value;
-    setFilterValue(filterValue.trim().toLowerCase());
-  };
-
   const visibleArticles = useMemo(() => {
-    const keys = ["title", "description"];
-    return articles.filter((article) => {
-      return keys.some((key) => {
-        return article[key].toLowerCase().includes(filterValue);
-      });
+    const filteredByTitle = articles.filter((article) => {
+      return article.title.toLowerCase().includes(filterValue.toLowerCase());
     });
+
+    const filteredByContent = articles.filter((article) => {
+      return article.description
+        .toLowerCase()
+        .includes(filterValue.toLowerCase());
+    });
+
+    const uniqueArticlesArray = [
+      ...filteredByTitle,
+      ...filteredByContent,
+    ].filter((article, index, articlesArray) => {
+      return articlesArray.indexOf(article) === index;
+    });
+
+    return uniqueArticlesArray;
   }, [articles, filterValue]);
 
   return (
