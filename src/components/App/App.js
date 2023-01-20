@@ -1,17 +1,36 @@
-import { Home } from "pages/Home/Home";
+import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { routes } from "routes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Article } from "pages/Article/Article";
+
+const Home = lazy(() =>
+  import("pages/Home/Home").then((module) => {
+    return { ...module, default: module.Home };
+  })
+);
+
+const Article = lazy(() =>
+  import("pages/Article/Article").then((module) => {
+    return { ...module, default: module.Article };
+  })
+);
+
+const SharedLayout = lazy(() =>
+  import("components/SharedLayout/SharedLayout").then((module) => {
+    return { ...module, default: module.SharedLayout };
+  })
+);
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path={routes.HOME} element={<Home />} />
-        <Route path={routes.ARTICLE_ID} element={<Article />} />
-        <Route path="*" element={<Navigate to={routes.HOME} />} />
+        <Route path={routes.HOME} element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path={routes.ARTICLE_ID} element={<Article />} />
+          <Route path="*" element={<Navigate to={routes.HOME} />} />
+        </Route>
       </Routes>
       <ToastContainer />
     </>

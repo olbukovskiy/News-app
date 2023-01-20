@@ -1,0 +1,23 @@
+@import "../../utils/variables";
+
+.appBar {
+  padding: 16px 0;
+  width: 100%;
+}
+
+.appBar__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.appBar__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.appBar__text {
+  font-family: $main-font, sans-serif;
+}

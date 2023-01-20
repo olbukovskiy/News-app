@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
+import { useError } from "hooks/useError";
 
 import { routes } from "routes";
-import { searchById } from "api/news-service";
+import { searchById } from "services/news-service";
+
 import { Container } from "components/Container/Container";
-import { BsArrowLeftShort } from "react-icons/bs";
-import { toast } from "react-toastify";
 import { Loader } from "components/Loader/Loader";
+import { BsArrowLeftShort } from "react-icons/bs";
 
 import styles from "./Article.module.scss";
 
 export const Article = function () {
   const [article, setArticle] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState("");
+  const { isLoading, setIsLoading, setIsError } = useError();
 
   const location = useLocation();
   const { articleId } = useParams();
@@ -35,13 +35,7 @@ export const Article = function () {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [articleId]);
-
-  useEffect(() => {
-    if (!isError) return;
-
-    toast.error("Houston we have a problem");
-  }, [isError]);
+  }, [articleId, setIsLoading, setIsError]);
 
   return (
     <div className={styles.article}>

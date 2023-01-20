@@ -4,10 +4,7 @@ import { Typography } from "@mui/material";
 
 import styles from "./Navigation.module.scss";
 
-const menu = [
-  { id: "home", name: "Home", route: routes.HOME },
-  { id: "articles", name: "Articles", route: routes.ARTICLES },
-];
+const menu = [{ id: "home", name: "Home", route: routes.HOME }];
 
 export function Navigation() {
   return (

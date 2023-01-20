@@ -1,18 +1,18 @@
-import { searchLatestNews } from "api/news-service";
+import { searchLatestNews } from "services/news-service";
 import { CardsList } from "components/CardsList/CardsList";
 import { Container } from "components/Container/Container";
 import { FilterBar } from "components/FilterBar/FilterBar";
 import { Loader } from "components/Loader/Loader";
 import { useState, useEffect, useMemo } from "react";
-import { toast } from "react-toastify";
+// import formatServices from "services/services";
 
 import styles from "./Home.module.scss";
+import { useError } from "hooks/useError";
 
 export const Home = function () {
   const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState("");
   const [filterValue, setFilterValue] = useState("");
+  const { isLoading, setIsLoading, setIsError } = useError();
 
   useEffect(() => {
     searchLatestNews()
@@ -26,22 +26,19 @@ export const Home = function () {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
-
-  useEffect(() => {
-    if (!isError) return;
-
-    toast.error("Houston we have a problem");
-  }, [isError]);
+  }, [setIsError, setIsLoading]);
 
   const onChange = (event) => {
     const filterValue = event.target.value;
     setFilterValue(filterValue.trim());
   };
 
-  const filteredArticles = useMemo(() => {
+  const visibleArticles = useMemo(() => {
+    const keys = ["title", "description"];
     return articles.filter((article) => {
-      return article.title.toLowerCase().includes(filterValue.toLowerCase());
+      return keys.some((key) => {
+        return article[key].toLowerCase().includes(filterValue.toLowerCase());
+      });
     });
   }, [articles, filterValue]);
 
@@ -52,9 +49,9 @@ export const Home = function () {
           <FilterBar onChange={onChange} />
           <p className={styles.result}>
             <span className={styles.result__title}>Result:</span>
-            {filteredArticles.length}
+            {visibleArticles.length}
           </p>
-          {articles.length > 0 && <CardsList articles={filteredArticles} />}
+          {articles.length > 0 && <CardsList articles={visibleArticles} />}
           {isLoading && <Loader />}
         </div>
       </Container>

@@ -2,6 +2,8 @@
 @import "../../utils/mixin";
 
 .card {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   font-family: $main-font, sans-serif;
   border-radius: $border-radius;
@@ -21,6 +23,8 @@
   width: 100%;
 
   & img {
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -29,8 +33,25 @@
 }
 
 .card__box {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   padding: 25px;
+  height: 100%;
+}
+
+.card__contentBox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.card__info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .card__date {
@@ -45,6 +66,7 @@
 }
 
 .card__title {
+  flex-grow: 1;
   font-weight: 400;
   margin-bottom: 20px;
   font-family: $main-font, sans-serif;
@@ -52,8 +74,8 @@
   line-height: $title-line-height;
 }
 
-.card__content {
-  margin-bottom: 20px;
+.card__description {
+  height: 96px;
   font-family: $main-font, sans-serif;
 }
 
@@ -61,8 +83,27 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  position: relative;
 
   font-family: $main-font, sans-serif;
   font-weight: $bold;
   color: getColor("primary");
+  @include transition("border-bottom");
+
+  &::after {
+    content: " ";
+    opacity: 0;
+
+    position: absolute;
+    bottom: -3px;
+    width: 130px;
+    height: 3px;
+    background-color: getColor("accent");
+
+    @include transition("opacity");
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
 }

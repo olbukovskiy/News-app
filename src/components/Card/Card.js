@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import { CiCalendar } from "react-icons/ci";
 import { BsArrowRightShort } from "react-icons/bs";
 
@@ -21,14 +22,18 @@ export const Card = function ({
         <img src={image} alt={title} />
       </div>
       <div className={styles.card__box}>
-        <p className={styles.card__date}>
-          <CiCalendar size={16} style={{ color: "currentColor" }} />
-          {formatServices.formatDate(published)}
-        </p>
-        <h2 className={styles.card__title}>{title}</h2>
-        <p className={styles.card__content}>
-          {formatServices.formatContent(description)}
-        </p>
+        <div className={styles.card__contentBox}>
+          <p className={styles.card__date}>
+            <CiCalendar size={16} style={{ color: "currentColor" }} />
+            {formatServices.formatDate(published)}
+          </p>
+          <div className={styles.card__info}>
+            <h2 className={styles.card__title}>{title}</h2>
+            <p className={styles.card__description}>
+              {formatServices.formatContent(description)}
+            </p>
+          </div>
+        </div>
         <Link
           className={styles.card__link}
           to={`/${articleId}`}
@@ -41,3 +46,11 @@ export const Card = function ({
     </li>
   );
 };
+
+Card.propTypes = {
+  articleId: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  published: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+}.isRequired;
