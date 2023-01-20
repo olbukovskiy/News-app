@@ -1,5 +1,6 @@
 import axios from "axios";
 import { URLS } from "urls";
+import formarServices from "../services/services";
 
 export const searchLatestNews = async function () {
   const response = await axios.get(URLS.trendingsUrl());
@@ -8,9 +9,27 @@ export const searchLatestNews = async function () {
       id: articleId,
       imageUrl: image,
       publishedAt: published,
-      summary: description,
+      summary,
       title,
     }) => {
+      const description = formarServices.formatContent(summary);
+      return { articleId, image, published, description, title };
+    }
+  );
+  return data;
+};
+
+export const searchByQuery = async function (searchQuery) {
+  const response = await axios.get(URLS.searchByQuery(searchQuery));
+  const data = response.data.map(
+    ({
+      id: articleId,
+      imageUrl: image,
+      publishedAt: published,
+      summary,
+      title,
+    }) => {
+      const description = formarServices.formatContent(summary);
       return { articleId, image, published, description, title };
     }
   );
