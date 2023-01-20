@@ -50,7 +50,7 @@ export const Article = function () {
         )}
         <Link className={styles.backLink} to={backLinkHref}>
           <BsArrowLeftShort size={28} />
-          Back to articles
+          Back to homepage
         </Link>
         {isLoading && <Loader />}
       </Container>

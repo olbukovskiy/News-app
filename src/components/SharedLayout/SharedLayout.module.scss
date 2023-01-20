@@ -1,0 +1,15 @@
+.body__wrapper {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100%;
+}
+
+.app__bar {
+  position: fixed;
+  z-index: 10000;
+}
+
+.main {
+  flex: 1 1 auto;
+}

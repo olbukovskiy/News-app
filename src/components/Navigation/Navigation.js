@@ -13,7 +13,10 @@ export function Navigation() {
         {menu.map(({ id, name, route }) => {
           return (
             <li key={id}>
-              <NavLink className={styles.link} to={route}>
+              <NavLink
+                className={(navData) => (navData.isActive ? styles.link : "")}
+                to={route}
+              >
                 <Typography variant="h4" component="p">
                   <span className={styles.navigationList__text}>{name}</span>
                 </Typography>

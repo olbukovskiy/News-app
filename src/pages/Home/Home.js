@@ -8,6 +8,7 @@ import { useState, useEffect, useMemo } from "react";
 
 import styles from "./Home.module.scss";
 import { useError } from "hooks/useError";
+import { Typography } from "@mui/material";
 
 export const Home = function () {
   const [articles, setArticles] = useState([]);
@@ -43,7 +44,7 @@ export const Home = function () {
   }, [articles, filterValue]);
 
   return (
-    <section style={{ padding: "60px 0" }}>
+    <section className={styles.home}>
       <Container>
         <div className={styles.wrapper}>
           <FilterBar onChange={onChange} />
@@ -52,6 +53,15 @@ export const Home = function () {
             {visibleArticles.length}
           </p>
           {articles.length > 0 && <CardsList articles={visibleArticles} />}
+          {visibleArticles.length === 0 && (
+            <Typography
+              style={{ margin: "0  auto" }}
+              variant="h2"
+              component="h2"
+            >
+              No matching articles
+            </Typography>
+          )}
           {isLoading && <Loader />}
         </div>
       </Container>

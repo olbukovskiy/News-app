@@ -2,22 +2,24 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-// import { AppBarComponent } from "components/AppBar/AppBar";
-// import { Footer } from "../Footer/Footer";
+import { AppBarComponent } from "components/AppBar/AppBar";
+import { Footer } from "../Footer/Footer";
 import { Loader } from "components/Loader/Loader";
+
+import styles from "./SharedLayout.module.scss";
 
 export const SharedLayout = function () {
   return (
-    <div>
-      {/* <AppBarComponent style={{ position: "fixed", zIndex: "10000" }} /> */}
-      <main>
+    <div className={styles.body__wrapper}>
+      <AppBarComponent className={styles.app__bar} />
+      <main className={styles.main}>
         {
           <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
         }
       </main>
-      {/* <Footer /> */}
+      <Footer />
       <ToastContainer />
     </div>
   );
