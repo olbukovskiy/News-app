@@ -4,7 +4,6 @@ import { Container } from "components/Container/Container";
 import { FilterBar } from "components/FilterBar/FilterBar";
 import { Loader } from "components/Loader/Loader";
 import { useState, useEffect, useMemo } from "react";
-// import formatServices from "services/services";
 
 import styles from "./Home.module.scss";
 import { useError } from "hooks/useError";
