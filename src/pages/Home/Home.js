@@ -1,9 +1,10 @@
+import { useState, useEffect, useMemo } from "react";
+
 import { searchLatestNews } from "services/news-service";
 import { CardsList } from "components/CardsList/CardsList";
 import { Container } from "components/Container/Container";
 import { FilterBar } from "components/FilterBar/FilterBar";
 import { Loader } from "components/Loader/Loader";
-import { useState, useEffect, useMemo } from "react";
 
 import styles from "./Home.module.scss";
 import { useError } from "hooks/useError";

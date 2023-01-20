@@ -6,12 +6,13 @@ function formatDate(time) {
 }
 
 function formatContent(str) {
-  if (str.length > 100) {
-    const newString = str.slice(0, 101);
+  const trimmedString = str.trim();
+  if (trimmedString.length > 100) {
+    const newString = trimmedString.slice(0, 101).trim();
     return `${newString}...`;
   }
 
-  return str;
+  return trimmedString;
 }
 
 function highlightSearchResults(query, highlightedContent) {

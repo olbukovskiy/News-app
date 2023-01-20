@@ -17,22 +17,6 @@ export const searchLatestNews = async function () {
   return data;
 };
 
-export const searchByQuery = async function (searchQuery) {
-  const response = await axios.get(URLS.searchByQuery(searchQuery));
-  const data = response.data.map(
-    ({
-      id: articleId,
-      imageUrl: image,
-      publishedAt: published,
-      summary: description,
-      title,
-    }) => {
-      return { articleId, image, published, description, title };
-    }
-  );
-  return data;
-};
-
 export const searchById = async function (articleId) {
   const response = await axios.get(URLS.searchById(articleId));
   const {

@@ -42,9 +42,7 @@ export const Article = function () {
       <Container>
         {article && (
           <div className={styles.article__wrapper}>
-            <h2 className={styles.article__title} variant="h4" component="h2">
-              {article.title}
-            </h2>
+            <h2 className={styles.article__title}>{article.title}</h2>
             <p className={styles.article__content}>{article.content}</p>
           </div>
         )}
