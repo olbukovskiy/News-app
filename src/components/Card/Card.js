@@ -13,8 +13,13 @@ export const Card = function ({
   published,
   description,
   title,
+  filter,
 }) {
   const location = useLocation();
+  const descr = formatServices.formatContent(description);
+  const newTitle = formatServices.highlightSearchResults(filter, title);
+  const newDescr = formatServices.highlightSearchResults(filter, descr);
+  const formattedDate = formatServices.formatDate(published);
 
   return (
     <li className={styles.card}>
@@ -25,13 +30,11 @@ export const Card = function ({
         <div className={styles.card__contentBox}>
           <p className={styles.card__date}>
             <CiCalendar size={16} style={{ color: "currentColor" }} />
-            {formatServices.formatDate(published)}
+            {formattedDate}
           </p>
           <div className={styles.card__info}>
-            <h2 className={styles.card__title}>{title}</h2>
-            <p className={styles.card__description}>
-              {formatServices.formatContent(description)}
-            </p>
+            <h2 className={styles.card__title}>{newTitle}</h2>
+            <p className={styles.card__description}>{newDescr}</p>
           </div>
         </div>
         <Link

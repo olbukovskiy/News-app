@@ -31,14 +31,14 @@ export const Home = function () {
 
   const onChange = (event) => {
     const filterValue = event.target.value;
-    setFilterValue(filterValue.trim());
+    setFilterValue(filterValue.trim().toLowerCase());
   };
 
   const visibleArticles = useMemo(() => {
     const keys = ["title", "description"];
     return articles.filter((article) => {
       return keys.some((key) => {
-        return article[key].toLowerCase().includes(filterValue.toLowerCase());
+        return article[key].toLowerCase().includes(filterValue);
       });
     });
   }, [articles, filterValue]);
@@ -52,7 +52,9 @@ export const Home = function () {
             <span className={styles.result__title}>Result:</span>
             {visibleArticles.length}
           </p>
-          {articles.length > 0 && <CardsList articles={visibleArticles} />}
+          {articles.length > 0 && (
+            <CardsList filter={filterValue} articles={visibleArticles} />
+          )}
           {visibleArticles.length === 0 && (
             <Typography
               style={{ margin: "0  auto" }}
