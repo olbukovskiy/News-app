@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route end path={routes.HOME} element={<SharedLayout />}>
+        <Route path={routes.HOME} element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path={routes.ARTICLE_ID} element={<Article />} />
           <Route path="*" element={<Navigate to={routes.HOME} />} />
