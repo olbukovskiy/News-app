@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { routes } from "routes";
 import { Typography } from "@mui/material";
+import { routes } from "routes";
 
 import styles from "./Navigation.module.scss";
 

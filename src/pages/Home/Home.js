@@ -1,14 +1,13 @@
 import { useState, useEffect, useMemo } from "react";
-
+import { useError } from "hooks/useError";
 import { searchLatestNews } from "services/news-service";
+import { Typography } from "@mui/material";
 import { CardsList } from "components/CardsList/CardsList";
 import { Container } from "components/Container/Container";
 import { FilterBar } from "components/FilterBar/FilterBar";
 import { Loader } from "components/Loader/Loader";
 
 import styles from "./Home.module.scss";
-import { useError } from "hooks/useError";
-import { Typography } from "@mui/material";
 
 export const Home = function () {
   const [articles, setArticles] = useState([]);

@@ -1,7 +1,6 @@
 import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { routes } from "routes";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = lazy(() =>
@@ -32,7 +31,6 @@ function App() {
           <Route path="*" element={<Navigate to={routes.HOME} />} />
         </Route>
       </Routes>
-      <ToastContainer />
     </>
   );
 }

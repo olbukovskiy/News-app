@@ -5,9 +5,9 @@ import { useError } from "hooks/useError";
 import { routes } from "routes";
 import { searchById } from "services/news-service";
 
+import { BsArrowLeftShort } from "react-icons/bs";
 import { Container } from "components/Container/Container";
 import { Loader } from "components/Loader/Loader";
-import { BsArrowLeftShort } from "react-icons/bs";
 
 import styles from "./Article.module.scss";
 
