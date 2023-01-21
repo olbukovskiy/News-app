@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
 import { OutlinedInput } from "@mui/material";
 import { FiSearch } from "react-icons/fi";
 import styles from "./FilterBar.module.scss";
 
-export const FilterBar = function ({ onChange }) {
+export const FilterBar = function ({ onChange, filterValue }) {
   return (
     <div>
       <label>
@@ -13,10 +14,16 @@ export const FilterBar = function ({ onChange }) {
             className={styles.filter__input}
             type="text"
             onChange={onChange}
+            value={filterValue}
             placeholder="Search news"
           />
         </div>
       </label>
     </div>
   );
+};
+
+FilterBar.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  filterValue: PropTypes.string,
 };

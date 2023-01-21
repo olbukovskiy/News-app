@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useError } from "hooks/useError";
 import { searchLatestNews } from "services/news-service";
 import { Typography } from "@mui/material";
@@ -11,12 +12,14 @@ import styles from "./Home.module.scss";
 
 export const Home = function () {
   const [articles, setArticles] = useState([]);
-  const [filterValue, setFilterValue] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const { isLoading, setIsLoading, setIsError } = useError();
+  const filterValue = searchParams.get("search") ?? "";
 
   const onChange = (event) => {
-    const filterValue = event.target.value;
-    setFilterValue(filterValue.trim().toLowerCase());
+    const filterValue = event.target.value.trim().toLowerCase();
+    const filterQuery = filterValue !== "" ? { search: filterValue } : {};
+    setSearchParams(filterQuery);
   };
 
   useEffect(() => {
@@ -35,13 +38,11 @@ export const Home = function () {
 
   const visibleArticles = useMemo(() => {
     const filteredByTitle = articles.filter((article) => {
-      return article.title.toLowerCase().includes(filterValue.toLowerCase());
+      return article.title.toLowerCase().includes(filterValue);
     });
 
     const filteredByContent = articles.filter((article) => {
-      return article.description
-        .toLowerCase()
-        .includes(filterValue.toLowerCase());
+      return article.description.toLowerCase().includes(filterValue);
     });
 
     const uniqueArticlesArray = [
@@ -58,7 +59,7 @@ export const Home = function () {
     <section className={styles.home}>
       <Container>
         <div className={styles.wrapper}>
-          <FilterBar onChange={onChange} />
+          <FilterBar filterValue={filterValue} onChange={onChange} />
           <p className={styles.result}>
             <span className={styles.result__title}>Result:</span>
             {visibleArticles.length}
