@@ -5,7 +5,7 @@ import styles from "./FilterBar.module.scss";
 
 export const FilterBar = function ({ onChange, filterValue }) {
   return (
-    <div>
+    <>
       <label>
         <span className={styles.filter__title}>Filter by keywords</span>
         <div className={styles.filter__wrapper}>
@@ -19,7 +19,7 @@ export const FilterBar = function ({ onChange, filterValue }) {
           />
         </div>
       </label>
-    </div>
+    </>
   );
 };
 

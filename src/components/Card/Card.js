@@ -55,4 +55,5 @@ Card.propTypes = {
   published: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  filter: PropTypes.string,
 }.isRequired;
