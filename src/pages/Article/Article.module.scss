@@ -19,12 +19,16 @@
   width: 100%;
   min-height: 600px;
   margin-bottom: 35px;
-  padding: 35px 75px 50px 75px;
+  padding: 35px 25px 50px 25px;
 
   @include bordered();
   @include semi-bordered();
   background-color: getColor("background");
   overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+    padding: 35px 75px 50px 75px;
+  }
 }
 
 .article__title {
