@@ -34,13 +34,20 @@
 .article__title {
   text-align: center;
   margin-bottom: 50px;
+  font-size: $article-title-mobile-font-size;
 
-  font-size: $article-title-font-size;
+  @media screen and (min-width: 768px) {
+    font-size: $article-title-font-size;
+  }
 }
 
 .article__content {
-  font-size: $article-text-font-size;
+  font-size: $article-text-mobile-font-size;
   color: getColor("text");
+
+  @media screen and (min-width: 768px) {
+    font-size: $article-text-font-size;
+  }
 }
 
 .backLink {

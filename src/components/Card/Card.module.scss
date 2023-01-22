@@ -70,8 +70,12 @@
   font-weight: 400;
   margin-bottom: 20px;
   font-family: $main-font, sans-serif;
-  font-size: $article-title-font-size;
+  font-size: $article-title-mobile-font-size;
   line-height: $title-line-height;
+
+  @media screen and (min-width: 768px) {
+    font-size: $article-title-font-size;
+  }
 }
 
 .card__description {
