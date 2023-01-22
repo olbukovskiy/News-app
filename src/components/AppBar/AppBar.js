@@ -12,7 +12,7 @@ export const AppBarComponent = function () {
         <div className={styles.appBar__wrapper}>
           <div className={styles.appBar__logo}>
             <GiNewspaper size={36} />
-            <Typography variant="h4" component="p">
+            <Typography variant="h5" component="p">
               <span className={styles.appBar__text}>NEWS APP</span>
             </Typography>
           </div>
