@@ -1,5 +1,5 @@
-@import "../../utils/variables";
-@import "../../utils/mixin";
+@import "utils/variables";
+@import "utils/mixin";
 
 .card {
   display: flex;
@@ -72,9 +72,11 @@
   font-family: $main-font, sans-serif;
   font-size: $article-title-mobile-font-size;
   line-height: $title-line-height;
+  font-weight: $bold;
 
   @media screen and (min-width: 768px) {
     font-size: $article-title-font-size;
+    font-weight: $common;
   }
 }
 

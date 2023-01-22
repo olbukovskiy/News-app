@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { CiCalendar } from "react-icons/ci";
 import { BsArrowRightShort } from "react-icons/bs";
 
-import formatServices from "../../services/services";
+import formatServices from "services/services";
 
 import styles from "./Card.module.scss";
 
