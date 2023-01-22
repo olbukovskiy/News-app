@@ -27,7 +27,8 @@
 
   & input {
     font-family: $main-font, sans-serif;
-
+    padding-left: 0;
+    padding-right: 0;
     &::placeholder {
       font-family: inherit;
       color: inherit;
