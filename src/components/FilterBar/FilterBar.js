@@ -12,7 +12,7 @@ export const FilterBar = function ({ onChange, filterValue }) {
           <FiSearch size={20} className={styles.icon} />
           <OutlinedInput
             className={styles.filter__input}
-            type="text"
+            type="search"
             onChange={onChange}
             value={filterValue}
             placeholder="Search news"
