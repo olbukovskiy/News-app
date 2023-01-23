@@ -16,7 +16,7 @@ export const FilterBar = function () {
     const filterValue = event.target.value.trim().toLowerCase();
     const searchQuery = filterValue !== "" ? { search: filterValue } : {};
     setSearchParams(searchQuery);
-    dispatch(filterArticles(filterValue));
+    dispatch(filterArticles(filterSearchValue));
   };
 
   useEffect(() => {

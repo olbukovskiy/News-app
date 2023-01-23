@@ -7,25 +7,22 @@ const initialValues = {
   error: "",
 };
 
-const handlePending = (state) => {
-  state.isLoading = true;
-};
-
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
-
 export const articlesSlice = createSlice({
   name: "articlesSlice",
   initialState: initialValues,
-  extraReducers: {
-    [fetchArticles.pending]: handlePending,
-    [fetchArticles.fulfilled](state, action) {
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchArticles.fulfilled, (state, action) => {
       state.isLoading = false;
       state.articles = action.payload;
       state.error = "";
-    },
-    [fetchArticles.rejected]: handleRejected,
+    });
+    builder.addCase(fetchArticles.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchArticles.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
