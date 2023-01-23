@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
@@ -8,7 +9,7 @@ import styles from "./FilterBar.module.scss";
 
 export const FilterBar = function () {
   const [searchParams, setSearchParams] = useSearchParams();
-  const filterValue = searchParams.get("search") ?? "";
+  const filterSearchValue = searchParams.get("search") ?? "";
   const dispatch = useDispatch();
 
   const onChange = (event) => {
@@ -17,6 +18,15 @@ export const FilterBar = function () {
     setSearchParams(searchQuery);
     dispatch(filterArticles(filterValue));
   };
+
+  useEffect(() => {
+    if (filterSearchValue === "") {
+      dispatch(filterArticles(filterSearchValue));
+      return;
+    }
+
+    dispatch(filterArticles(filterSearchValue));
+  }, [dispatch, filterSearchValue]);
 
   return (
     <>
@@ -28,7 +38,7 @@ export const FilterBar = function () {
             className={styles.filter__input}
             type="search"
             onChange={onChange}
-            value={filterValue}
+            value={filterSearchValue}
             placeholder="Search news"
           />
         </div>
