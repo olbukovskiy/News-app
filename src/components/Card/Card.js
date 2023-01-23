@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { CiCalendar } from "react-icons/ci";
 import { BsArrowRightShort } from "react-icons/bs";
 
+import { selectFilterValue } from "redux/selectors";
 import formatServices from "services/services";
 
 import styles from "./Card.module.scss";
@@ -13,11 +15,17 @@ export const Card = function ({
   published,
   description,
   title,
-  filter,
 }) {
   const location = useLocation();
-  const newTitle = formatServices.highlightSearchResults(filter, title);
-  const newDescr = formatServices.highlightSearchResults(filter, description);
+  const filterValue = useSelector(selectFilterValue);
+  const newTitle = formatServices.highlightSearchResults(
+    filterValue,
+    formatServices.formatTitle(title)
+  );
+  const newDescr = formatServices.highlightSearchResults(
+    filterValue,
+    description
+  );
   const formattedDate = formatServices.formatDate(published);
 
   return (
@@ -55,5 +63,4 @@ Card.propTypes = {
   published: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  filter: PropTypes.string,
 }.isRequired;

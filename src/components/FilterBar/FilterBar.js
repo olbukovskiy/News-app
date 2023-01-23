@@ -1,9 +1,23 @@
-import PropTypes from "prop-types";
-import { OutlinedInput } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
+import { OutlinedInput } from "@mui/material";
+import { filterArticles } from "redux/filterSlice";
+
 import styles from "./FilterBar.module.scss";
 
-export const FilterBar = function ({ onChange, filterValue }) {
+export const FilterBar = function () {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filterValue = searchParams.get("search") ?? "";
+  const dispatch = useDispatch();
+
+  const onChange = (event) => {
+    const filterValue = event.target.value.trim().toLowerCase();
+    const searchQuery = filterValue !== "" ? { search: filterValue } : {};
+    setSearchParams(searchQuery);
+    dispatch(filterArticles(filterValue));
+  };
+
   return (
     <>
       <label>
@@ -21,9 +35,4 @@ export const FilterBar = function ({ onChange, filterValue }) {
       </label>
     </>
   );
-};
-
-FilterBar.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  filterValue: PropTypes.string,
 };

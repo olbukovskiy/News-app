@@ -1,26 +1,18 @@
-import PropTypes from "prop-types";
-import { Card } from "components/Card/Card";
-import styles from "./CardsList.module.scss";
+import { useSelector } from "react-redux";
 
-export const CardsList = function ({ articles, filter }) {
+import { Card } from "components/Card/Card";
+
+import styles from "./CardsList.module.scss";
+import { selectVisibleArticles } from "redux/selectors";
+
+export const CardsList = function () {
+  const articles = useSelector(selectVisibleArticles);
+
   return (
     <ul className={styles.cardsList}>
       {articles.map((article) => {
-        return <Card key={article.articleId} {...article} filter={filter} />;
+        return <Card key={article.articleId} {...article} />;
       })}
     </ul>
   );
-};
-
-CardsList.propTypes = {
-  articles: PropTypes.arrayOf(
-    PropTypes.shape({
-      articleId: PropTypes.number.isRequired,
-      image: PropTypes.string.isRequired,
-      published: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-  filter: PropTypes.string,
 };

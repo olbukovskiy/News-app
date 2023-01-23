@@ -1,15 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
+import {
+  selectArticleError,
+  selectArticleIsLoading,
+  selectError,
+  selectIsLoading,
+} from "redux/selectors";
+
 export const useError = () => {
-  const [isError, setIsError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectError);
+
+  const isArticleLoading = useSelector(selectArticleIsLoading);
+  const isArticleError = useSelector(selectArticleError);
 
   useEffect(() => {
-    if (!isError) return;
+    if (isError === "") return;
 
-    toast.error("Houston we have a problem", { autoClose: 3000 });
+    toast.error("Houston we have a problem1", { autoClose: 3000 });
   }, [isError]);
 
-  return { isLoading, setIsLoading, setIsError };
+  useEffect(() => {
+    if (isArticleError === "") return;
+
+    toast.error("Houston we have a problem2", { autoClose: 3000 });
+  }, [isArticleError]);
+
+  return { isLoading, isError, isArticleError, isArticleLoading };
 };
