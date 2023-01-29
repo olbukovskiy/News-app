@@ -3,7 +3,7 @@ import { fetchArticles } from "./operations";
 
 const initialValues = {
   articles: [],
-  isLoading: false,
+  isLoading: true,
   error: "",
 };
 

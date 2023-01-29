@@ -7,7 +7,6 @@ import { selectVisibleArticles } from "redux/selectors";
 
 export const CardsList = function () {
   const articles = useSelector(selectVisibleArticles);
-
   return (
     <ul className={styles.cardsList}>
       {articles.map((article) => {

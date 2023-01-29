@@ -8,7 +8,7 @@ import { fetchArticles } from "redux/operations";
 import { CardsList } from "components/CardsList/CardsList";
 import { Container } from "components/Container/Container";
 import { FilterBar } from "components/FilterBar/FilterBar";
-import { Loader } from "components/Loader/Loader";
+import { SkeletonList } from "components/Skeleton/SkeletonList/SkeletonList";
 
 import styles from "./Home.module.scss";
 
@@ -31,7 +31,9 @@ export const Home = function () {
             {visibleArticles.length}
           </p>
           <CardsList />
-          {visibleArticles.length === 0 && (
+          {isLoading && isError === "" && <SkeletonList />}
+
+          {visibleArticles.length === 0 && !isLoading && (
             <Typography
               style={{ margin: "0  auto" }}
               variant="h3"
@@ -40,7 +42,6 @@ export const Home = function () {
               No matching articles
             </Typography>
           )}
-          {isLoading && isError === "" && <Loader />}
         </div>
       </Container>
     </section>
