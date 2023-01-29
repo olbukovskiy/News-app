@@ -8,7 +8,7 @@ const initialValues = {
 };
 
 export const articleSlice = createSlice({
-  name: "articleSlice",
+  name: "article",
   initialState: initialValues,
   reducers: {},
   extraReducers: (builder) => {

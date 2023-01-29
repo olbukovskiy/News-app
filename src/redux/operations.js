@@ -23,7 +23,7 @@ export const fetchArticles = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -38,7 +38,7 @@ export const fetchArticleById = createAsyncThunk(
       } = response;
       return { content, title };
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
