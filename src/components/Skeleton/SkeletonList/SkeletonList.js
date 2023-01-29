@@ -2,7 +2,7 @@ import { SkeletonCard } from "../SkeletonCard/SkeletonCard";
 import styles from "./SkeletonList.module.scss";
 
 export const SkeletonList = function () {
-  const skeletonItems = 10;
+  const skeletonItems = 9;
   return (
     <ul className={styles.cardsList}>
       {Array(skeletonItems)

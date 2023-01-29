@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useError } from "hooks/useError";
+import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 
-import { selectVisibleArticles } from "redux/selectors";
 import { fetchArticles } from "redux/operations";
+import hooks from "hooks";
+
 import { CardsList } from "components/CardsList/CardsList";
 import { Container } from "components/Container/Container";
 import { FilterBar } from "components/FilterBar/FilterBar";
@@ -14,8 +14,7 @@ import styles from "./Home.module.scss";
 
 export const Home = function () {
   const dispatch = useDispatch();
-  const visibleArticles = useSelector(selectVisibleArticles);
-  const { isLoading, isError } = useError();
+  const { isLoading, error, visibleArticles } = hooks.useArticles();
 
   useEffect(() => {
     dispatch(fetchArticles());
@@ -31,7 +30,7 @@ export const Home = function () {
             {visibleArticles.length}
           </p>
           <CardsList />
-          {isLoading && isError === "" && <SkeletonList />}
+          {isLoading && error === "" && <SkeletonList />}
 
           {visibleArticles.length === 0 && !isLoading && (
             <Typography
