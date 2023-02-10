@@ -1,7 +1,7 @@
 import format from "date-fns/format";
 import Highlighter from "react-highlight-words";
 
-function formatDate(time) {
+function formatDate(time: string) {
   if (!time) {
     return "Unknown";
   }
@@ -9,7 +9,7 @@ function formatDate(time) {
   return format(Date.parse(time), "MMMM do, yyyy");
 }
 
-function formatContent(str) {
+function formatContent(str: string) {
   const trimmedString = str.trim();
   if (trimmedString.length > 100) {
     const newString = trimmedString.slice(0, 101).trim();
@@ -23,7 +23,10 @@ function formatContent(str) {
   return trimmedString;
 }
 
-function highlightSearchResults(query, highlightedContent) {
+function highlightSearchResults<T extends string>(
+  query: T,
+  highlightedContent: T
+): React.ReactNode {
   const searchQueryArray = query.split(" ");
   return (
     <Highlighter
@@ -34,7 +37,7 @@ function highlightSearchResults(query, highlightedContent) {
   );
 }
 
-function formatTitle(title) {
+function formatTitle(title: string) {
   if (!title) {
     return "Interesting article";
   }

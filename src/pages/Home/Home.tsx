@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 
-import { fetchArticles } from "redux/operations";
 import hooks from "hooks";
+import { fetchArticles } from "redux/operations";
 
 import { CardsList } from "components/CardsList/CardsList";
 import { Container } from "components/Container/Container";
@@ -12,9 +11,11 @@ import { SkeletonList } from "components/Skeleton/SkeletonList/SkeletonList";
 
 import styles from "./Home.module.scss";
 
+const { useAppDispatch, useArticles } = hooks;
+
 export const Home = function () {
-  const dispatch = useDispatch();
-  const { isLoading, error, visibleArticles } = hooks.useArticles();
+  const dispatch = useAppDispatch();
+  const { isLoading, error, visibleArticles } = useArticles();
 
   useEffect(() => {
     dispatch(fetchArticles());

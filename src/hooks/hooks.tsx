@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
+import { RootState, AppDispatch } from "redux/store";
 import {
   selectArticle,
   selectArticleError,
@@ -10,9 +12,9 @@ import {
   selectError,
   selectIsLoading,
   selectVisibleArticles,
-} from "redux/selectors";
+} from "../redux/selectors";
 
-export const useArticles = function () {
+function useArticles() {
   const articles = useSelector(selectArticles);
   const visibleArticles = useSelector(selectVisibleArticles);
   const isLoading = useSelector(selectIsLoading);
@@ -25,9 +27,9 @@ export const useArticles = function () {
   }, [error]);
 
   return { articles, isLoading, error, visibleArticles };
-};
+}
 
-export const useArticle = function () {
+function useArticle() {
   const article = useSelector(selectArticle);
   const isLoading = useSelector(selectArticleIsLoading);
   const error = useSelector(selectArticleError);
@@ -39,8 +41,14 @@ export const useArticle = function () {
   }, [error]);
 
   return { article, isLoading, error };
-};
+}
 
-const hooks = { useArticle, useArticles };
+type DispatchFunc = () => AppDispatch;
+
+const useAppDispatch: DispatchFunc = useDispatch;
+
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+const hooks = { useArticle, useArticles, useAppDispatch, useAppSelector };
 
 export default hooks;

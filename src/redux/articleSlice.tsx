@@ -1,10 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IArticle } from "types";
 import { fetchArticleById } from "./operations";
 
-const initialValues = {
+interface IArticleState {
+  article: IArticle;
+
+  isLoading: boolean;
+  error: any;
+}
+
+const initialValues: IArticleState = {
   article: {},
   isLoading: false,
-  error: "",
+  error: null,
 };
 
 export const articleSlice = createSlice({
@@ -15,14 +23,18 @@ export const articleSlice = createSlice({
     builder.addCase(fetchArticleById.fulfilled, (state, action) => {
       state.isLoading = false;
       state.article = action.payload;
-      state.error = "";
+      state.error = {};
     });
     builder.addCase(fetchArticleById.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(fetchArticleById.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
+      if (action.payload) {
+        state.error = action.payload.message;
+      } else {
+        state.error = action.error;
+      }
     });
   },
 });

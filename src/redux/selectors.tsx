@@ -1,18 +1,20 @@
 import { createSelector } from "@reduxjs/toolkit";
+import { RootState } from "./store";
 
-export const selectArticles = (state) => state.articles.articles;
+export const selectArticles = (state: RootState) => state.articles.articles;
 
-export const selectIsLoading = (state) => state.articles.isLoading;
+export const selectIsLoading = (state: RootState) => state.articles.isLoading;
 
-export const selectError = (state) => state.articles.error;
+export const selectError = (state: RootState) => state.articles.error;
 
-export const selectArticle = (state) => state.article.article;
+export const selectArticle = (state: RootState) => state.article.article;
 
-export const selectArticleError = (state) => state.article.error;
+export const selectArticleError = (state: RootState) => state.article.error;
 
-export const selectArticleIsLoading = (state) => state.article.isLoading;
+export const selectArticleIsLoading = (state: RootState) =>
+  state.article.isLoading;
 
-export const selectFilterValue = (state) => state.filter;
+export const selectFilterValue = (state: RootState) => state.filter;
 
 export const selectVisibleArticles = createSelector(
   [selectArticles, selectFilterValue],

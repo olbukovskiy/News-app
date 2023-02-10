@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import hooks from "hooks";
 import { Link, useLocation, useParams } from "react-router-dom";
 
 import { fetchArticleById } from "redux/operations";
-import hooks from "hooks";
 import { routes } from "routes";
 
 import { BsArrowLeftShort } from "react-icons/bs";
@@ -12,16 +11,20 @@ import { Loader } from "components/Loader/Loader";
 
 import styles from "./Article.module.scss";
 
-export const Article = function () {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const { articleId } = useParams();
-  const { isLoading, article, error } = hooks.useArticle();
+const { useAppDispatch, useArticle } = hooks;
 
-  const backLinkHref = location.state?.from ?? routes.HOME;
+export const Article = function () {
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+  const { articleId } = useParams<{ articleId: string }>();
+  const { isLoading, article, error } = useArticle();
+
+  const backLinkHref: string = location.state?.from ?? routes.HOME;
 
   useEffect(() => {
-    dispatch(fetchArticleById(articleId));
+    if (typeof articleId === "string") {
+      dispatch(fetchArticleById(articleId));
+    }
   }, [dispatch, articleId]);
 
   return (
