@@ -21,7 +21,7 @@ function useArticles() {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    if (error === "") return;
+    if (error === null) return;
 
     toast.error("Houston we have a problem1", { autoClose: 3000 });
   }, [error]);
@@ -35,7 +35,7 @@ function useArticle() {
   const error = useSelector(selectArticleError);
 
   useEffect(() => {
-    if (error === "") return;
+    if (error === null) return;
 
     toast.error("Houston we have a problem2", { autoClose: 3000 });
   }, [error]);

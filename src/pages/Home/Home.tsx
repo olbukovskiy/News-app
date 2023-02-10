@@ -31,7 +31,7 @@ export const Home = function () {
             {visibleArticles.length}
           </p>
           <CardsList />
-          {isLoading && error === "" && <SkeletonList />}
+          {isLoading && error === null && <SkeletonList />}
 
           {visibleArticles.length === 0 && !isLoading && (
             <Typography

@@ -5,9 +5,9 @@ import { GiNewspaper } from "react-icons/gi";
 
 import styles from "./AppBar.module.scss";
 
-export const AppBarComponent = function () {
+export const AppBarComponent: React.FunctionComponent = () => {
   return (
-    <AppBar className={styles.appBar} position="fixed">
+    <AppBar className={styles.appBar}>
       <Container>
         <div className={styles.appBar__wrapper}>
           <div className={styles.appBar__logo}>

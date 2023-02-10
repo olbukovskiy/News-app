@@ -2,9 +2,13 @@ import { routes } from "routes";
 import { NavItem } from "components/NavItem/NavItem";
 import styles from "./Navigation.module.scss";
 
-const menu = [{ id: "home", name: "Home", route: routes.HOME }];
+const menu: {
+  id: string;
+  name: string;
+  route: string;
+}[] = [{ id: "home", name: "Home", route: routes.HOME }];
 
-export const Navigation = function () {
+export const Navigation = () => {
   return (
     <nav>
       <ul className={styles.navigationList}>

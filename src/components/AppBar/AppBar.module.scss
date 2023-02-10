@@ -1,6 +1,8 @@
 @import "utils/variables";
 
 .appBar {
+  position: fixed;
+  z-index: 10000;
   padding: 1rem 0;
   width: 100%;
 }

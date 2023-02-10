@@ -1,8 +1,8 @@
 import Skeleton from "react-loading-skeleton";
 import style from "./SkeletonCard.module.scss";
 
-export const SkeletonCard = function () {
-  const skeletonContentFields = 4;
+export const SkeletonCard: React.FunctionComponent = () => {
+  const skeletonContentFields: number = 4;
   return (
     <li className={style.card}>
       <div className={style.thumb} style={{ marginBottom: "25px" }}>

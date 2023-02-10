@@ -1,8 +1,8 @@
 import { SkeletonCard } from "../SkeletonCard/SkeletonCard";
 import styles from "./SkeletonList.module.scss";
 
-export const SkeletonList = function () {
-  const skeletonItems = 9;
+export const SkeletonList: React.FunctionComponent = () => {
+  const skeletonItems: number = 9;
   return (
     <ul className={styles.cardsList}>
       {Array(skeletonItems)

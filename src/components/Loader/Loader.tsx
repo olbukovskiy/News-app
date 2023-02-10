@@ -1,6 +1,6 @@
 import styles from "./Loader.module.scss";
 
-export const Loader = function () {
+export const Loader: React.FunctionComponent = () => {
   return (
     <div className={styles.spinnerBackdrop}>
       <div className={styles.loadingWrapper}>

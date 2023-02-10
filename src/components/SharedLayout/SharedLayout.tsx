@@ -8,10 +8,10 @@ import { Loader } from "components/Loader/Loader";
 
 import styles from "./SharedLayout.module.scss";
 
-export const SharedLayout = function () {
+export const SharedLayout: React.FunctionComponent = () => {
   return (
     <div className={styles.body__wrapper}>
-      <AppBarComponent className={styles.app__bar} />
+      <AppBarComponent />
       <main className={styles.main}>
         {
           <Suspense fallback={<Loader />}>

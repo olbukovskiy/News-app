@@ -1,10 +1,14 @@
-import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import { Typography } from "@mui/material";
 
 import styles from "./NavItem.module.scss";
 
-export const NavItem = function ({ route, name }) {
+interface IProps {
+  route: string;
+  name: string;
+}
+
+export const NavItem: React.FunctionComponent<IProps> = ({ route, name }) => {
   return (
     <li>
       <NavLink
@@ -17,9 +21,4 @@ export const NavItem = function ({ route, name }) {
       </NavLink>
     </li>
   );
-};
-
-NavItem.propTypes = {
-  route: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
 };

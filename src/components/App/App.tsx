@@ -21,7 +21,7 @@ const SharedLayout = lazy(() =>
   })
 );
 
-function App() {
+const App: React.FunctionComponent = () => {
   return (
     <>
       <Routes>
@@ -33,6 +33,6 @@ function App() {
       </Routes>
     </>
   );
-}
+};
 
 export default App;

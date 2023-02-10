@@ -1,23 +1,25 @@
-import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import PropTypes from "prop-types";
 import { CiCalendar } from "react-icons/ci";
 import { BsArrowRightShort } from "react-icons/bs";
 
+import { IArticles } from "types";
 import { selectFilterValue } from "redux/selectors";
 import formatServices from "services/services";
+import hooks from "hooks";
 
 import styles from "./Card.module.scss";
 
-export const Card = function ({
+const { useAppSelector } = hooks;
+
+export const Card: React.FunctionComponent<IArticles> = ({
   articleId,
   image,
   published,
   description,
   title,
-}) {
+}) => {
   const location = useLocation();
-  const filterValue = useSelector(selectFilterValue);
+  const filterValue = useAppSelector(selectFilterValue);
   const newTitle = formatServices.highlightSearchResults(
     filterValue,
     formatServices.formatTitle(title)
@@ -56,11 +58,3 @@ export const Card = function ({
     </li>
   );
 };
-
-Card.propTypes = {
-  articleId: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  published: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-}.isRequired;

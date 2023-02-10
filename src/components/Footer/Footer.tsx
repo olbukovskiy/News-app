@@ -1,7 +1,7 @@
 import { Container } from "components/Container/Container";
 import styles from "./Footer.module.scss";
 
-export const Footer = function () {
+export const Footer: React.FunctionComponent = () => {
   return (
     <footer className={styles.footer}>
       <Container>

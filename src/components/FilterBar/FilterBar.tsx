@@ -1,20 +1,27 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { OutlinedInput } from "@mui/material";
 import { filterArticles } from "redux/filterSlice";
+import hooks from "hooks";
 
 import styles from "./FilterBar.module.scss";
 
-export const FilterBar = function () {
+interface ISearchQuery {
+  [prop: string]: string;
+}
+
+const { useAppDispatch } = hooks;
+
+export const FilterBar: React.FunctionComponent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const filterSearchValue = searchParams.get("search") ?? "";
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const onChange = (event) => {
-    const filterValue = event.target.value.trim().toLowerCase();
-    const searchQuery = filterValue !== "" ? { search: filterValue } : {};
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const filterValue: string = event.target.value.trim().toLowerCase();
+    const searchQuery: ISearchQuery =
+      filterValue !== "" ? { search: filterValue } : {};
     setSearchParams(searchQuery);
     dispatch(filterArticles(filterSearchValue));
   };
