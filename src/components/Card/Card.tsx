@@ -32,29 +32,31 @@ export const Card: React.FunctionComponent<IArticles> = ({
 
   return (
     <li className={styles.card}>
-      <div className={styles.thumb}>
-        <img src={image} alt={title} />
-      </div>
-      <div className={styles.card__box}>
-        <div className={styles.card__contentBox}>
-          <p className={styles.card__date}>
-            <CiCalendar size={16} style={{ color: "currentColor" }} />
-            {formattedDate}
-          </p>
-          <div className={styles.card__info}>
-            <h2 className={styles.card__title}>{newTitle}</h2>
-            <p className={styles.card__description}>{newDescr}</p>
+      <Link
+        className={styles.card__link}
+        to={`/${articleId}`}
+        state={{ from: location }}
+      >
+        <div className={styles.thumb}>
+          <img src={image} alt={title} />
+        </div>
+        <div className={styles.card__box}>
+          <div className={styles.card__contentBox}>
+            <p className={styles.card__date}>
+              <CiCalendar size={16} style={{ color: "currentColor" }} />
+              {formattedDate}
+            </p>
+            <div className={styles.card__info}>
+              <h2 className={styles.card__title}>{newTitle}</h2>
+              <p className={styles.card__description}>{newDescr}</p>
+            </div>
+          </div>
+          <div className={styles.card__arrow}>
+            <span>Read more</span>
+            <BsArrowRightShort size={28} />
           </div>
         </div>
-        <Link
-          className={styles.card__link}
-          to={`/${articleId}`}
-          state={{ from: location }}
-        >
-          <span>Read more</span>
-          <BsArrowRightShort size={28} />
-        </Link>
-      </div>
+      </Link>
     </li>
   );
 };

@@ -23,7 +23,7 @@ function useArticles() {
   useEffect(() => {
     if (error === null) return;
 
-    toast.error("Houston we have a problem1", { autoClose: 3000 });
+    toast.error("Houston we have a problem", { autoClose: 3000 });
   }, [error]);
 
   return { articles, isLoading, error, visibleArticles };
@@ -37,7 +37,7 @@ function useArticle() {
   useEffect(() => {
     if (error === null) return;
 
-    toast.error("Houston we have a problem2", { autoClose: 3000 });
+    toast.error("Houston we have a problem", { autoClose: 3000 });
   }, [error]);
 
   return { article, isLoading, error };

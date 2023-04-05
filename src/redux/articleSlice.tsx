@@ -4,7 +4,6 @@ import { fetchArticleById } from "./operations";
 
 interface IArticleState {
   article: IArticle;
-
   isLoading: boolean;
   error: any;
 }

@@ -2,10 +2,7 @@
 @import "utils/mixin";
 
 .card {
-  display: flex;
-  flex-direction: column;
   height: 100%;
-  font-family: $main-font, sans-serif;
   border-radius: $border-radius;
   overflow: hidden;
   @include semi-bordered();
@@ -17,9 +14,15 @@
   }
 }
 
+.card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .thumb {
   position: relative;
-  padding: 0 0 60% 0;
+  padding: 0 0 80% 0;
   width: 100%;
 
   & img {
@@ -39,6 +42,9 @@
 
   padding: 25px;
   height: 100%;
+
+  font-family: $main-font, sans-serif;
+  color: getColor("text");
 }
 
 .card__contentBox {
@@ -85,7 +91,7 @@
   font-family: $main-font, sans-serif;
 }
 
-.card__link {
+.card__arrow {
   display: flex;
   align-items: center;
   gap: 6px;
